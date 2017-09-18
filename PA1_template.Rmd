@@ -16,7 +16,7 @@ activityData <- read.csv('activity.csv')
 #activityData$interval <- strptime(gsub("([0-9]{1,2})([0-9]{2})", "\\1:\\2", activityData$interval), format='%H:%M')
 ```
 -----
-## What is mean total number of steps taken per day?
+## Meean of total number of steps taken per day
 ```{r}
 stepsByDay <- tapply(activityData$steps, activityData$date, sum, na.rm=TRUE)
 ```
@@ -36,7 +36,7 @@ stepsByDayMedian <- median(stepsByDay)
 
 -----
 
-## What is the average daily activity pattern?
+## Average daily of activity pattern
 ```{r}
 averageStepsPerTimeBlock <- aggregate(x=list(meanSteps=activityData$steps), by=list(interval=activityData$interval), FUN=mean, na.rm=TRUE)
 ```
@@ -81,7 +81,7 @@ stepsByDayImputed <- tapply(activityDataImputed$steps, activityDataImputed$date,
 qplot(stepsByDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency using binwith 500', binwidth=500)
 ```
 
-##### Calculate the mean and median total number of steps taken each day. 
+##### Calculate the mean and median total number of steps taken each day
 ```{r}
 stepsByDayMeanImputed <- mean(stepsByDayImputed)
 stepsByDayMedianImputed <- median(stepsByDayImputed)
